@@ -5,7 +5,7 @@ def MatrixSumSmall(vals,small):
     for i in range(len(vals)):
         for j in range(len(vals[i])):
             if abs(vals[i][j]) <= small:
-                sum = sum + vals[i][j]
+                sum = sum + abs(vals[i][j])
 
     return sum
 
