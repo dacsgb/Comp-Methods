@@ -20,8 +20,9 @@ def IntArrayMaxDuplicates(vals):
         index = vals[i]
         freq[index-1] = freq[index-1] + 1
     
-    for i in range(size):
+    for i in range(size-1,-1,-1):
         if freq[i] > mode:
+            mode = freq[i]
             index = i
 
     return (index+1), freq[index]
@@ -47,7 +48,7 @@ def interp1D(x,xvals, yvals):
     return inter
 
 def main(): # define the variables needed to test the required functions
-    myvals = [1,5,2,3,5,5,3,5,2,5,3,3,1,5]     
+    myvals = [1,5,2,3,5,5,3,5,2,5,3,3,1,5]  
     mymatrix = [[1, 3.7 , -7, 4],                 
                 [-8, 9, 2, -1.8 ],                 
                 [-12, 7.9, 3.2, 13]]    
