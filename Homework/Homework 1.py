@@ -56,7 +56,7 @@ def main(): # define the variables needed to test the required functions
     xvals = [1, 2, 4, 5, 7]     
     yvals = [2, 4, -2, 4, 5]     
     x1 = 1.3    
-    x2 = 6.3    
+    x2 = 6.4
     mysmall = 4.9
 
     # for part a)
