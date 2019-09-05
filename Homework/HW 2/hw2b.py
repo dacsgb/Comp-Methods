@@ -20,26 +20,22 @@ def Secant(fcn, x0, x1, maxiter=10,  xtol=1e-5):
 
     return x_new
 
-
 def main():
 
-    print("example 1")
     f = lambda x: x-3*cos(x)
     lb , ub, maxiter, xtol = 1, 2, 5, 1e-4
     Root = Secant(f,lb,ub,maxiter,xtol)
-    print(Root)
+    print("Root of example 1 =",Root)
 
-    print('example 2')
     f = lambda x: cos(2*x)*x**3
     lb , ub, maxiter, xtol = 1, 2, 15, 1e-8
     Root = Secant(f,lb,ub,maxiter,xtol)
-    print(Root)
+    print("Root of example 2 =",Root)
 
-    print("example 3")
     f = lambda x: cos(2*x)*x**3
     lb , ub, maxiter, xtol = 1, 2, 3, 1e-8
     Root = Secant(f,lb,ub,maxiter,xtol)
-    print(Root)
+    print("Root of example 3 =",Root)
 
 
 

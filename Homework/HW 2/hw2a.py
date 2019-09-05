@@ -3,19 +3,27 @@ import copy
 
 def Simpson(fcn, a, b, npoints=21):
 
+    if a > b:
+        print(" Incorrect bounds")
+        return None
 
     if math.remainder(npoints,2) == 0:
         npoints += 1
 
-    f = [0]*(npoints+1)
-    x = [0]*(npoints+1)
     dt = (b-a)/npoints
+    I = 0
 
-    for i in range(npoints+1):
-        x[i] = a + i*dt
-        f[i] = fcn(x[i])
+    for i in range(0,npoints):
+        if i == 0:
+            I += fcn(a + i*dt)
+        elif i == npoints:
+            I += fcn(a + i*dt)
+        elif i % 2 == 0:
+            I += 4*fcn(a + i*dt)
+        elif i % 2 == 1:
+            I += 2*fcn(a + i*dt)
 
-    I = 
+    I = dt*I/3
 
     return I
 
