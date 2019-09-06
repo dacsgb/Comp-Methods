@@ -10,18 +10,25 @@ def Simpson(fcn, a, b, npoints=21):
     if math.remainder(npoints,2) == 0:
         npoints += 1
 
-    dt = (b-a)/npoints
+    dt = (b-a)/(npoints-1)
+    x = [0]*npoints
+
+    for i in range(len(x)):
+        x[i] = a + i*dt
+
     I = 0
 
     for i in range(0,npoints):
         if i == 0:
-            I += fcn(a + i*dt)
-        elif i == npoints:
-            I += fcn(a + i*dt)
+            I += fcn(x[i])
+        elif i == npoints-1:
+            I += fcn(x[i])
+            break
         elif i % 2 == 0:
-            I += 4*fcn(a + i*dt)
+            I += 2*fcn(x[i])
         elif i % 2 == 1:
-            I += 2*fcn(a + i*dt)
+            I += 4*fcn(x[i])
+        print(a+i*dt)
 
     I = dt*I/3
 
