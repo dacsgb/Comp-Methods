@@ -32,11 +32,11 @@ def main():
     A = [[4,3,1,-1,2],[2,-5,0,-2,-3],[-3,3,-6,1,5,],[0,1,4,8,-2]]
     Ax = [0,0,0,0]
 
-    iterations = 1000
+    iterations = 22
     X = GaussSeidel(C,Cx,iterations)
     print(X)
 
-    iterations = 1000
+    iterations = 3
     X = GaussSeidel(A,Ax,iterations)
     print(X)
 
