@@ -2,7 +2,7 @@ import math
 import copy
 
 def GaussElim(Aaug):
-    
+
     # Read augmented matrix dimensions
     m = len(Aaug)
     n = len(Aaug[0])
@@ -42,22 +42,17 @@ def GaussElim(Aaug):
             suma += A[i][j]*x[j]
         x[i] = (b[i]-suma)/A[i][i]
 
-    print(A)
-    print(b)
-    print(x)
-
     return x
-def main():
 
-    
+def main():
 
     A = [[4,-1,1,3],[2,-3,1,9],[-1,1,7,-6]]
     X = GaussElim(A)
-    #print(X)
+    print(X)
 
     C = [[4,3,1,-1,2],[2,-5,0,-2,-3],[-3,3,-6,1,5,],[0,1,4,8,-2]]
     X = GaussElim(C)
-    #print(X)
+    print(X)
 
 
 main()
