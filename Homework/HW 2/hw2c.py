@@ -24,7 +24,6 @@ def GaussSeidel(Aaug, x, Niter = 15):
                 x_new[j] += -(Aaug[j][k]*x_old[k])/Aaug[j][j]
 
     return x_new
- 
 
 def main():
     C = [[4,-1,1,3],[2,-3,1,9],[-1,1,7,-6]]
