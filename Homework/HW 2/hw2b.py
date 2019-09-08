@@ -4,8 +4,8 @@ def Secant(fcn, x0, x1, maxiter=10,  xtol=1e-5):
 
     running = True
     it = 0
-    x_new = x0+(x1+x0)/2
-    x_prev = x1-(x1+x0)/2
+    x_new = x1
+    x_prev = x0
 
     while running == True:
 
