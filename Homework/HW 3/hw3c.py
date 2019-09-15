@@ -37,9 +37,11 @@ def ThrustNeededForTakeoff(distance):
 
 def main():
     Thrust = 13000
-    print(Sto(Thrust))
-    print(ThrustNeededForTakeoff(1500))
-    print(ThrustNeededForTakeoff(1000))
+    Distance1 = 1500
+    Distance2 = 1000
+    print("Diestance required to take of with", Thrust, "N of Thrust=",Sto(Thrust),"m")
+    print("Trust Required to take of in", Distance1, "m =", ThrustNeededForTakeoff(Distance1),"N")
+    print("Trust Required to take of in", Distance2, "m =",ThrustNeededForTakeoff(Distance2),"N")
 
 main()
 
