@@ -11,7 +11,7 @@ def Collatz(n):
     return n
 
 def iterate():
-    n = random.randint(2**10,2**16)
+    n = random.randint(10**10,10**11)
     x = [n]
     while n != 1:
         n = Collatz(n)
@@ -27,5 +27,5 @@ def graph(x):
 
 if __name__ == "__main__":
     series = iterate()
-    print("The value",series[0],"converged in",len(series),"steps")
+    print("The value",series[0],"converged in",len(series),"steps with a max of",max(series))
     graph(series)
