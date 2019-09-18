@@ -31,9 +31,9 @@ def ThrustNeededForTakeoff(distance):
     x_new = 10e3
     x_prev = 30e3
 
-    Tf = Functions.Secant(fcn,x_prev,x_new)
+    T = Functions.Secant(fcn,x_prev,x_new)
 
-    return Tf
+    return T
 
 def main():
     Thrust = 13000

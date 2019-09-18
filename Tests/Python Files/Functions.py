@@ -1,7 +1,7 @@
 import math
 import copy
 
-def interp1D(x,xvals, yvals):
+def interpolate(x,xvals, yvals):
 
     for i in range(len(xvals)):
         if (x - xvals[i] > 0):
@@ -11,7 +11,7 @@ def interp1D(x,xvals, yvals):
 
     return inter
 
-def Simpson(fcn, a, b, npoints=21):
+def Integrate(fcn, a, b, npoints=21):
 
     if a > b:
         print(" Incorrect bounds")
@@ -43,7 +43,7 @@ def Simpson(fcn, a, b, npoints=21):
 
     return I
 
-def Secant(fcn, x0, x1, maxiter=1e4,  xtol=1e-6):
+def Secant(fcn, x0, x1, maxiter=1000,  xtol=1e-5):
 
     running = True
     it = 0

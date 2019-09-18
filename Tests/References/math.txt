@@ -1,0 +1,132 @@
+math.ceil(x)
+Return the ceiling of x, the smallest integer greater than or equal to x. If x is not a float, delegates to x.__ceil__(), which should return an Integral value.
+
+math.copysign(x, y)
+Return a float with the magnitude (absolute value) of x but the sign of y. On platforms that support signed zeros, copysign(1.0, -0.0) returns -1.0.
+
+math.fabs(x)
+Return the absolute value of x.
+
+math.factorial(x)
+Return x factorial as an integer. Raises ValueError if x is not integral or is negative.
+
+math.floor(x)
+Return the floor of x, the largest integer less than or equal to x. If x is not a float, delegates to x.__floor__(), which should return an Integral value.
+
+math.fmod(x, y)
+Return fmod(x, y), as defined by the platform C library. Note that the Python expression x % y may not return the same result. The intent of the C standard is that fmod(x, y) be exactly (mathematically; to infinite precision) equal to x - n*y for some integer n such that the result has the same sign as x and magnitude less than abs(y). Python’s x % y returns a result with the sign of y instead, and may not be exactly computable for float arguments. For example, fmod(-1e-100, 1e100) is -1e-100, but the result of Python’s -1e-100 % 1e100 is 1e100-1e-100, which cannot be represented exactly as a float, and rounds to the surprising 1e100. For this reason, function fmod() is generally preferred when working with floats, while Python’s x % y is preferred when working with integers.
+
+math.frexp(x)
+Return the mantissa and exponent of x as the pair (m, e). m is a float and e is an integer such that x == m * 2**e exactly. If x is zero, returns (0.0, 0), otherwise 0.5 <= abs(m) < 1. This is used to “pick apart” the internal representation of a float in a portable way.
+
+math.fsum(iterable)
+Return an accurate floating point sum of values in the iterable. Avoids loss of precision by tracking multiple intermediate partial sums:
+
+math.gcd(a, b)
+Return the greatest common divisor of the integers a and b. If either a or b is nonzero, then the value of gcd(a, b) is the largest positive integer that divides both a and b. gcd(0, 0) returns 0.
+
+New in version 3.5.
+
+math.isclose(a, b, *, rel_tol=1e-09, abs_tol=0.0)
+Return True if the values a and b are close to each other and False otherwise.
+
+math.isfinite(x)
+Return True if x is neither an infinity nor a NaN, and False otherwise. (Note that 0.0 is considered finite.)
+
+New in version 3.2.
+
+math.isinf(x)
+Return True if x is a positive or negative infinity, and False otherwise.
+
+math.isnan(x)
+Return True if x is a NaN (not a number), and False otherwise.
+
+math.ldexp(x, i)
+Return x * (2**i). This is essentially the inverse of function frexp().
+
+math.modf(x)
+Return the fractional and integer parts of x. Both results carry the sign of x and are floats.
+
+math.remainder(x, y)
+Return the IEEE 754-style remainder of x with respect to y.
+
+math.trunc(x)¶
+Return the Real value x truncated to an Integral (usually an integer). Delegates to x.__trunc__().
+
+math.exp(x)
+Return e raised to the power x, where e = 2.718281… is the base of natural logarithms. This is usually more accurate than math.e ** x or pow(math.e, x).
+
+math.expm1(x)
+Return e raised to the power x, minus 1. Here e is the base of natural logarithms. For small floats x, the subtraction in exp(x) - 1 can result in a significant loss of precision; the expm1() function provides a way to compute this quantity to full precision:
+
+math.log(x[, base])
+With one argument, return the natural logarithm of x (to base e).
+
+With two arguments, return the logarithm of x to the given base, calculated as log(x)/log(base).
+
+math.log1p(x)
+Return the natural logarithm of 1+x (base e). The result is calculated in a way which is accurate for x near zero.
+
+math.log2(x)
+Return the base-2 logarithm of x. This is usually more accurate than log(x, 2).
+
+math.log10(x)
+Return the base-10 logarithm of x. This is usually more accurate than log(x, 10).
+
+math.pow(x, y)
+Return x raised to the power y.
+
+math.sqrt(x)
+Return the square root of x.
+
+math.acos(x)
+Return the arc cosine of x, in radians.
+
+math.asin(x)
+Return the arc sine of x, in radians.
+
+math.atan(x)
+Return the arc tangent of x, in radians.
+
+math.atan2(y, x)
+Return atan(y / x), in radians. The result is between -pi and pi. The vector in the plane from the origin to point (x, y) makes this angle with the positive X axis. The point of atan2() is that the signs of both inputs are known to it, so it can compute the correct quadrant for the angle. For example, atan(1) and atan2(1, 1) are both pi/4, but atan2(-1, -1) is -3*pi/4.
+
+math.cos(x)
+Return the cosine of x radians.
+
+math.hypot(x, y)
+Return the Euclidean norm, sqrt(x*x + y*y). This is the length of the vector from the origin to point (x, y).
+
+math.sin(x)
+Return the sine of x radians.
+
+math.tan(x)
+Return the tangent of x radians.
+
+math.degrees(x)
+Convert angle x from radians to degrees.
+
+math.radians(x)
+Convert angle x from degrees to radians.
+
+math.pi
+The mathematical constant π = 3.141592…, to available precision.
+
+math.e
+The mathematical constant e = 2.718281…, to available precision.
+
+math.tau
+The mathematical constant τ = 6.283185…, to available precision. Tau is a circle constant equal to 2π, the ratio of a circle’s circumference to its radius. To learn more about Tau, check out Vi Hart’s video Pi is (still) Wrong, and start celebrating Tau day by eating twice as much pie!
+
+New in version 3.6.
+
+math.inf
+A floating-point positive infinity. (For negative infinity, use -math.inf.) Equivalent to the output of float('inf').
+
+New in version 3.5.
+
+math.nan
+A floating-point “not a number” (NaN) value. Equivalent to the output of float('nan').
+
+New in version 3.5.
+
