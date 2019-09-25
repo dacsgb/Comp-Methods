@@ -5,7 +5,6 @@ def CubicSpline(x,y,slope1=0,slope2=0):
     A = np.zeros((len(x),len(x)))
     B = np.zeros(len(x))
     a = np.zeros((len(x),4))
-    h = x[1]-x[0]
 
     A[0][0] = 1
     for i in range(1,len(x)-1):
@@ -14,11 +13,9 @@ def CubicSpline(x,y,slope1=0,slope2=0):
         A[i][i+1]   =   1
     A[-1][-1] = 1
 
-
-
     B[0] = slope1
     for i in range(1,len(x)-1):
-        B[i] = 3*(y[i+1]-y[i-1])/h
+        B[i] = 3*(y[i+1]-y[i-1])/(x[i+1]-x[i])
     B[-1] = slope2
 
     K = np.linalg.solve(A,B)
@@ -26,10 +23,9 @@ def CubicSpline(x,y,slope1=0,slope2=0):
     for i in range(len(x)-1):
         a[i][0] = y[i]
         a[i][1] = K[i]
-        a[i][2] = 3*(y[i+1]-y[i])/h**2 - (K[i+1]+2*K[i])/h
-        a[i][3] = 2*(y[i+1]-y[i])/h**3 - (K[i+1]+K[i])/h**2
-    print(K)
-    print(a)
+        a[i][2] = 3*(y[i+1]-y[i])/(x[i+1]-x[i])**2 - (K[i+1]+2*K[i])/(x[i+1]-x[i])
+        a[i][3] = 2*(y[i]-y[i+1])/(x[i+1]-x[i])**3 + (K[i+1]+K[i])/(x[i+1]-x[i])**2
+        print()
 
     return a
 
@@ -52,7 +48,10 @@ def main():
     x = np.array([0.05,0.11,0.15,0.31,0.46,0.52,0.7,0.74,0.82,0.98,1.17])
     y = np.array([0.956,1.09,1.332,0.717,0.771,0.539,0.378,0.370,0.306,0.242,0.104])
 
-    #CubicSpline(x,y)
+    a = CubicSpline(x,y)
     PlotCubicSpline(x,y)
+
+    print("The coefficients of the splines are")
+    print(a)
 
 main()
