@@ -29,7 +29,6 @@ def CubicSpline(x,y,slope1=0,slope2=0):
 
     return a
 
-
 def PlotCubicSpline(x, y, slope1 = 0, slope2 = 0, showpoints = True, npoints= 500):
     A = CubicSpline(x,y,slope1,slope2)
     

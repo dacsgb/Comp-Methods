@@ -9,7 +9,6 @@ def LeastSquares(x,y,power):
     for i in range(len(A)):
         for j in range(len(A[0])):
             A[i][j]= sum(x**(i+j))
-            T[i][j] = (i+j)
     
     for i in range(power+1):
         B[i] = sum(y*x**i)
@@ -28,7 +27,7 @@ def PlotLeastSquares(x,y,power,showpoints= True, npoints = 500):
     ycalc = y_eq(xcalc)
 
     if showpoints == True:
-        plt.plot(xcalc,ycalc,x,y)
+        plt.plot(xcalc,ycalc,x,y,'o')
     else:
         plt.plot(xcalc,ycalc)
 
