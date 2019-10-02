@@ -16,39 +16,61 @@ def deriv(X,t):
     return Xd
 
 def graph(sol,t):
+    plt.figure(1)
+    plt.title('System State Response')
+
     plt.subplot(2,2,1)
+    plt.title('Mass Position')
     plt.plot(t,sol[:,0])
     plt.xlabel('Time - [s]')
     plt.ylabel('Postion - [m]')
 
     plt.subplot(2,2,2)
+    plt.title('Mass Velocity')
     plt.plot(t,sol[:,1])
     plt.xlabel('Time - [s]')
     plt.ylabel('Velocity - [m/s]')
 
     plt.subplot(2,2,3)
+    plt.title('Pressure 1')
     plt.plot(t,sol[:,2])
     plt.xlabel('Time - [s]')
-    plt.ylabel('Pressure 1 - [Pa]')
+    plt.ylabel('Pressure - [Pa]')
 
     plt.subplot(2,2,4)
+    plt.title('Pressure 2')
     plt.plot(t,sol[:,3])
     plt.xlabel('Time - [s]')
-    plt.ylabel('Pressure 2 - [Pa]')
+    plt.ylabel('Pressure - [Pa]')
+
+    plt.figure(2)
+    plt.title('Pressures in Pistions')
+    plt.plot(t,sol[:,2],label = 'Pressure 1')
+    plt.plot(t,sol[:,3],label = 'Pressure 2')
+    plt.xlabel('Time - [s]')
+    plt.ylabel('Pressure - [Pa]')
+    plt.legend()
+
+    plt.figure(3)
+    plt.title('Mass Velocity')
+    plt.plot(t,sol[:,1])
+    plt.xlabel('Time - [s]')
+    plt.ylabel('Velocity - [m/s]')
     
     plt.show()
 
-b = 1
-V = 1
-rho = 1
-Kv =5
-pa = 6
-ps = 4
-A = 3
-y = 5
-m = 2
+A = 4.909*10**-4
+ps = 1.4*10**7
+pa = 1*10**5
+V = 1.473*10**-4
+b =2*10**9
+rho = 850
+Kv = 2*10**-5
+m = 30
 
-X = np.array([1,1,1,1]) # (position, velocity, pressure 1, pressure 2)
-t = np.linspace(0,5,500)
-sol = integrate.odeint(deriv,X,t)
-graph(sol,t)
+y = 0.002 # System input
+X = np.array([0,0,pa,pa]) # (position, velocity, pressure 1, pressure 2)
+t = np.linspace(0,0.05,500) # time vector
+
+sol = integrate.odeint(deriv,X,t) # solve system
+graph(sol,t) # graph system response
