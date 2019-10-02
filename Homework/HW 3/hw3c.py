@@ -3,8 +3,6 @@
 import math
 import Functions
 
-
-
 def Sto(Thrust):
     Weight = 56000
     S = 1000

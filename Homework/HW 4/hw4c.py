@@ -13,10 +13,10 @@ def FourierCoeff(fcn,L,nterms):
     a[0] = value/(2*L)
 
     for i in range(1,nterms):
-        value, error    =   sp.quad(fc,-L,L)
-        a[i]    =   value/L
-        value, error =   sp.quad(fs,-L,L)
-        b[i]    =   value/L
+        value, error = sp.quad(fc,-L,L)
+        a[i] = value/L
+        value, error = sp.quad(fs,-L,L)
+        b[i] = value/L
     b[0] = 0
 
     return a, b
@@ -32,7 +32,6 @@ def PlotFourier(a,b,L,xmin,xmax,npoints = 5000):
     
     plt.plot(x,y)
     plt.show()
-
 
 def main():
     def sharkfin(x):
@@ -58,7 +57,7 @@ def main():
     PlotFourier(a,b,L,-3*L,3*L)
 
     L = np.pi
-    a, b = FourierCoeff(lambda x: -x ,L,10)
+    a, b = FourierCoeff(lambda x: -x,L,10)
     print(a,"\n",b,"\n")
     PlotFourier(a,b,L,-4*L,4*L,npoints=10000)
 

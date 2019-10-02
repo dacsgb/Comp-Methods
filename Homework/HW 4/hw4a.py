@@ -18,7 +18,6 @@ def LeastSquares(x,y,power):
 
     return C[::-1]
 
-
 def PlotLeastSquares(x,y,power,showpoints= True, npoints = 500):
     C = LeastSquares(x,y,power)
 
@@ -27,10 +26,15 @@ def PlotLeastSquares(x,y,power,showpoints= True, npoints = 500):
     ycalc = y_eq(xcalc)
 
     if showpoints == True:
-        plt.plot(xcalc,ycalc,x,y,'o')
+        plt.plot(xcalc,ycalc, label ='Least Square Fit')
+        plt.plot(x,y,'o', label='Data')
+        plt.legend()
     else:
-        plt.plot(xcalc,ycalc)
-
+        plt.plot(xcalc,ycalc, label='Least Square Fit')
+        plt.legend()
+    plt.xlabel('X-Data')
+    plt.ylabel('Y-Data')
+    plt.title('Least Square Fit Curve')
     plt.show()
 
 def main():
@@ -53,10 +57,13 @@ def main():
     y_1 = LSF_1(xcalc)
     y_3 = LSF_3(xcalc)
 
-    plt.plot(xcalc,y_1)
-    plt.plot(xcalc,y_3)
-    plt.plot(x,y,'o')
+    plt.plot(xcalc,y_1,label='First Order Poly')
+    plt.plot(xcalc,y_3,label='Third Order Poly')
+    plt.plot(x,y,'o',label='Data')
+    plt.legend()
+    plt.xlabel('X-Data')
+    plt.ylabel('Y-Data')
+    plt.title('Least Square Fit Comparison')
     plt.show()
-
 
 main()
