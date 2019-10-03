@@ -40,7 +40,7 @@ def err(Q):
     E = np.append(E,Q[6]+Q[8]-Q[9])
     E = np.append(E,Q[7]+Q[9]-Q[10])
     E = np.append(E,p[1]+p[3]+p[4]-p[2]-p[0])
-    E = np.append(E,p[5]+p[8]-p[6]-p[5])
+    E = np.append(E,p[5]+p[8]-p[6]-p[3])
     E = np.append(E,p[6]+p[9]-p[7]-p[4])
 
     return E
