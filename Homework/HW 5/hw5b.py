@@ -1,7 +1,8 @@
 import numpy as np
 import scipy.optimize as opt
+import matplotlib.pyplot as plt
 
-def Err(state):
+def Err(state,W,r,Kg,mu):
     E = np.zeros(1)
 
     F = state[0] 
@@ -22,8 +23,18 @@ W = 30
 r = 1.5
 Kg = 0.8
 gc = 32.2
-mu = 0.5
-state = np.array([0,0,0,0,0])
+mu = np.empty(0)
+th = np.empty(0)
+ic = np.array([0,0,0,0,0])
 
-X = opt.fsolve(Err,state)
-print(np.rad2deg(X[4]))
+for i in range(16):
+    mu = np.append(mu, 0.1 + 0.05*i)
+    X = opt.fsolve(Err,ic,args=(W,r,Kg,mu[-1]))
+    th = np.append(th, X[4])
+
+plt.figure(1)
+plt.title("Angle of Impending Slip vs Coefficent of Friction")
+plt.plot(mu,np.rad2deg(th))
+plt.xlabel("Coefficent of Friction - [unitless]")
+plt.ylabel("Angle of ramp - [deg]")
+plt.show()

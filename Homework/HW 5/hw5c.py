@@ -69,8 +69,8 @@ Kv = 2*10**-5
 m = 30
 
 y = 0.002 # System input
-X = np.array([0,0,pa,pa]) # (position, velocity, pressure 1, pressure 2)
+ic = np.array([0,0,pa,pa]) # (position, velocity, pressure 1, pressure 2)
 t = np.linspace(0,0.05,500) # time vector
 
-sol = integrate.odeint(deriv,X,t) # solve system
-graph(sol,t) # graph system response
+X = integrate.odeint(deriv,ic,t) # solve system
+graph(X,t) # graph system response

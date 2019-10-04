@@ -45,6 +45,18 @@ def err(Q):
 
     return E
 
+def Sol_print(Qsol):
+    print("The flow in semgemnt  a-b=",Qsol[0]*1000,"L/s")
+    print("The flow in semgemnt  a-c=",Qsol[1]*1000,"L/s")
+    print("The flow in semgemnt  b-e=",Qsol[2]*1000,"L/s")
+    print("The flow in semgemnt  c-d=",Qsol[3]*1000,"L/s")
+    print("The flow in semgemnt  d-e=",Qsol[4]*1000,"L/s")
+    print("The flow in semgemnt  c-f=",Qsol[5]*1000,"L/s")
+    print("The flow in semgemnt  d-g=",Qsol[6]*1000,"L/s")
+    print("The flow in semgemnt  e-h=",Qsol[7]*1000,"L/s")
+    print("The flow in semgemnt  f-g=",Qsol[8]*1000,"L/s")
+    print("The flow in semgemnt  g-h=",Qsol[9]*1000,"L/s")
+
 rho = 1000 # density in kg/m^3
 mu =  0.00089 # viscosity in Ns/m^2
 eps = 0.00025   # roughness of pipe in m
@@ -52,8 +64,8 @@ D = np.array([300,200,200,200,200,150,150,150,250,250])*10**-3 # diameter of pip
 L = np.array([300,100,100,125,125,100,100,100,125,125]) # length of pipes in m
 
 Q = np.array([1,1,1,1,1,1,1,1,1,1,1]) # flow in pipes and Qh in m^3/s
-Qin = np.array([60,30,15])*0.001 # flow entering and leaving in m^3/s
+Qin = np.array([60,30,15])/1000 # flow entering and leaving in m^3/s
 
 Qsol = opt.fsolve(err,[Q])
-print(Qsol*1000)
+Sol_print(Qsol)
 
