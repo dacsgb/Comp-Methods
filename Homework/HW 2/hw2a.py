@@ -28,7 +28,7 @@ def Simpson(fcn, a, b, npoints=21):
             I += 2*fcn(x[i])
         elif i % 2 == 1:
             I += 4*fcn(x[i])
-        print(a+i*dt)
+
 
     I = dt*I/3
 
