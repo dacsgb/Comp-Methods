@@ -19,7 +19,10 @@ class rankine():
         self.state4 = None
 
     def calc_eff(self):
-        pass
+        self.state1 = steam(p_low,)
+        self.state2 = steam()
+        self.state3 = steam()
+        self.state4 = steam()
 
     def print_summary(self):
         if self.eff == None:

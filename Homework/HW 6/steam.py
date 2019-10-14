@@ -4,6 +4,7 @@ from scipy.interpolate import griddata
 class steam():
 
     def __init__(self, pressure, T = None, x = None, v = None, h = None, s = None, name = None):
+        self.load_data()
         self.pressure = pressure
         self.T = T
         self.x = x
@@ -18,7 +19,11 @@ class steam():
             self.calc()
     
     def calc(self):
-        pass
+        
+    def load_data(self)
+        self.Tsh, self.hsh, self.ssh, self.psh = np.loadtxt('superheated_water_table.txt',skiprows=1,unpack=True)
+        self.Tsat, self.hsat, self.ssat, self.psat = np.loadtxt('sat_water_table.txt',skiprows=1,unpack=True)
+
 
     def print(self)
         print("Name:",self.name)
