@@ -18,11 +18,14 @@ class rankine():
         self.state3 = None
         self.state4 = None
 
-    def calc_eff(self):
-        self.state1 = steam(p_low,)
+    def calc_state(self):
+        self.state1 = steam(p_low,p)
         self.state2 = steam()
         self.state3 = steam()
         self.state4 = steam()
+
+    def calc_eff(self):
+        self.eff = 100*(self.turb_work-self.pump_work)/self.heat_added
 
     def print_summary(self):
         if self.eff == None:
