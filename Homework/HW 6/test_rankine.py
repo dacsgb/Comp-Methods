@@ -1,7 +1,7 @@
 from rankine import rankine
 
 def main():
-    rankine1 = rankine(8,8000,t_high=500, name="Rankine Cycle - Saturated at turbine Inlet")
+    rankine1 = rankine(8,8000,t_high=500, name="Rankine Cycle - Superheated at turbine Inlet")
 
     eff = rankine1.calc_eff()
     print(eff)

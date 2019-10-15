@@ -34,7 +34,6 @@ class rankine():
         self.pump_work = self.state4.h - self.state3.h
         self.heat_added = self.state1.h - self.state4.h
         self.eff = 100*(self.turb_work-self.pump_work)/self.heat_added
-
         return self.eff
 
     def print_summary(self):

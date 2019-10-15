@@ -24,24 +24,24 @@ class steam():
 
     def calc(self):
 
-        # calculate quality assuming
-
         if self.x == None:
             if self.h != None:
                 self.hf = float(griddata(self.psat,self.hfsat,self.p))
                 self.hg = float(griddata(self.psat,self.hgsat,self.p))
                 self.x = (self.h - self.hf)/(self.hg-self.hf)
-                self.region = 'Saturated'
             elif self.s != None:
                 self.sf = float(griddata(self.psat,self.sfsat,self.p))
                 self.sg = float(griddata(self.psat,self.sgsat,self.p))
                 self.x = (self.s - self.sf)/(self.sg-self.sf)
-                self.region = 'Saturated'
             elif self.v != None:
                 self.vf = float(griddata(self.psat,self.vfsat,self.p))
                 self.vg = float(griddata(self.psat,self.vgsat,self.p))
                 self.x = (self.v - self.vf)/(self.vg-self.vf)
-                self.region = 'Saturated'
+
+        if self.x != None:
+            self.region = 'Saturated'
+        elif self.T != None:
+            self.region = 'Superheated'
 
         if self.region == 'Saturated':
             self.hf = float(griddata(self.psat,self.hfsat,self.p))
@@ -55,30 +55,43 @@ class steam():
             self.s = self.x*self.sg + (1-self.x)*self.sf
             self.v = self.x*self.vg + (1-self.x)*self.vf
             
-        
         elif self.region == 'Superheated':
             self.p*= 100
             if self.T != None:
                 self.h = float(griddata((self.psh,self.Tsh),self.hsh,(self.p,self.T)))
                 self.s = float(griddata((self.psh,self.Tsh),self.ssh,(self.p,self.T)))
-            if self.h != None:
+            elif self.h != None:
                 self.T = float(griddata((self.psh,self.hsh),self.Tsh,(self.p,self.h)))
                 self.s = float(griddata((self.psh,self.hsh),self.ssh,(self.p,self.h)))
-            if self.s != None:
+            elif self.s != None:
                 self.T =float(griddata((self.psh,self.ssh),self.Tsh,(self.p,self.s)))
                 self.h =float(griddata((self.psh,self.ssh),self.hsh,(self.p,self.s)))
             
 
         
     def print(self):
-        print("Name:",self.name)
-        print('Region:', self.region)
-        print("p", self.p)
-        print("T", self.T)
-        print("h",self.h)
-        print("s",self.s)
-        print("v",self.v)
-        print("x",self.x)
+        if self.region == 'Superheated':
+            print("Name:",self.name)
+            print('Region:', self.region)
+            print("p = {:.2f} kPa".format(self.p*1000))
+            print("T = {:.1f} degrees C".format(self.T))
+            print("h = {:.2f} kJ/Kg".format(self.h))
+            print("s = {:.4f} kJ/(kg K)".format(self.s))
+        elif self.x < 0:
+            print("Name:",self.name)
+            print('Region:', "Subcooled")
+            print("p = {:.2f} kPa".format(self.p*1000))
+            print("h = {:.2f} kJ/Kg".format(self.h))
+        else:
+            print("Name:",self.name)
+            print('Region:', self.region)
+            print("p = {:.2f} kPa".format(self.p*1000))
+            print("T = {:.1f} degrees C".format(self.T))
+            print("h = {:.2f} kJ/Kg".format(self.h))
+            print("s = {:.4f} kJ/(kg K)".format(self.s))
+            print("v = {:.6f} m^3/kg".format(self.v))
+            print("x = {:.4f}".format(self.x))
+
 
 def main():
     inlet = steam(7330, name = 'Turbine Inlet')
