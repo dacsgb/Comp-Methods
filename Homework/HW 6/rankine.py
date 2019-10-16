@@ -15,7 +15,7 @@ class rankine():
         self.heat_added = 0
         self.state1 = None
         self.state2 = None
-        self.state3 = None
+        self.state3 = None 
         self.state4 = None
 
     def calc_state(self):

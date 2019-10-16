@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Building From Source on Windows &mdash; SciPy v1.3.0 Reference Guide</title>
+    
+    <link rel="stylesheet" type="text/css" href="../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/scipy-mathjax/MathJax.js?config=scipy-mathjax"></script>
+    <script type="text/javascript" src="../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" >
+    <link rel="search" title="Search" href="../search.html" >
+    <link rel="top" title="SciPy v1.3.0 Reference Guide" href="../index.html" >
+    <link rel="up" title="Building from sources" href="index.html" >
+    <link rel="next" title="Building From Source on Mac OSX" href="macosx.html" >
+    <link rel="prev" title="Building From Source on Linux" href="linux.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+	
+        <li class="active"><a href="../index.html">SciPy v1.3.0 Reference Guide</a></li>
+	
+          <li class="active"><a href="index.html" accesskey="U">Building from sources</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../py-modindex.html" title="Python Module Index"
+           >modules</a>
+      </li>
+      <li class="active">
+        <a href="macosx.html" title="Building From Source on Mac OSX"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="linux.html" title="Building From Source on Linux"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/scipyshiny_small.png" alt="Logo">
+            </a></p>
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Building From Source on Windows</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#building-the-released-scipy">Building the Released SciPy</a><ul>
+<li><a class="reference internal" href="#building-openblas">Building OpenBLAS</a></li>
+<li><a class="reference internal" href="#installing-openblas">Installing OpenBLAS</a></li>
+<li><a class="reference internal" href="#building-scipy">Building SciPy</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#building-against-an-older-numpy-version">Building Against an Older NumPy Version</a></li>
+<li><a class="reference internal" href="#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="linux.html"
+                        title="previous chapter">Building From Source on Linux</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="macosx.html"
+                        title="next chapter">Building From Source on Mac OSX</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h4>Quick search</h4>
+    <div>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" style="width: inherit;" name="q" />
+      <input type="submit" value="search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="building-from-source-on-windows">
+<h1>Building From Source on Windows<a class="headerlink" href="#building-from-source-on-windows" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p></li>
+<li><p><a class="reference internal" href="#building-the-released-scipy" id="id3">Building the Released SciPy</a></p>
+<ul>
+<li><p><a class="reference internal" href="#building-openblas" id="id4">Building OpenBLAS</a></p></li>
+<li><p><a class="reference internal" href="#installing-openblas" id="id5">Installing OpenBLAS</a></p></li>
+<li><p><a class="reference internal" href="#building-scipy" id="id6">Building SciPy</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#building-against-an-older-numpy-version" id="id7">Building Against an Older NumPy Version</a></p></li>
+<li><p><a class="reference internal" href="#additional-resources" id="id8">Additional Resources</a></p></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Compared to OSX and Linux, building NumPy and SciPy on Windows is more difficult,
+largely due to the lack of compatible, open-source libraries like <a class="reference external" href="http://www.netlib.org/lapack/">LAPACK</a> or
+<a class="reference external" href="http://math-atlas.sourceforge.net/">ATLAS</a> that are necessary to build both libraries and have them perform
+relatively well. It is not possible to just call a one-liner on the command
+prompt as you would on other platforms via <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span></code> machinery.</p>
+<p>This document describes one option to build OpenBLAS and SciPy from source that
+was validated for scipy 1.0.0. However, in light of all the work currently being
+done, <strong>do not expect</strong> these instructions to be accurate in the long-run and be
+sure to check up on any of the open source projects mentioned for the most up-to-date
+information. For more information on all of these projects, the <a class="reference external" href="https://mingwpy.github.io/">Mingwpy</a> website
+is an excellent source of in-depth information than this document will provide.</p>
+</div>
+<div class="section" id="building-the-released-scipy">
+<h2><a class="toc-backref" href="#id3">Building the Released SciPy</a><a class="headerlink" href="#building-the-released-scipy" title="Permalink to this headline">¶</a></h2>
+<p>This section provides the step-by-step process to build the released scipy. If you want
+to build completely from source, you should estimate at least three hours to build all
+libraries and compile SciPy. Feel free to stop and inspect any step at any time, but
+for this section, we’ll just mention the steps without providing an in-depth explanation
+for the reasons behind them. If you have further questions about what we’re doing, more
+in-depth documentation is provided in the sections below. Also, please make sure to read
+this section before proceeding, as the presence or absence of error messages in general
+is not a good indication of whether you’ve completed a step correctly. Each step creates
+particular files, and what ultimately matters is whether you have built the required files
+rather than whether error messages appeared in your terminal.</p>
+<div class="section" id="building-openblas">
+<h3><a class="toc-backref" href="#id4">Building OpenBLAS</a><a class="headerlink" href="#building-openblas" title="Permalink to this headline">¶</a></h3>
+<p>First, we need to install the software required to build <a class="reference external" href="https://github.com/xianyi/OpenBLAS">OpenBLAS</a>, which is the <a class="reference external" href="https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms">BLAS</a>
+library that we’re going to use. Because the software to build OpenBLAS is different than
+that required to build SciPy and because OpenBLAS takes a long time to build, we’re going
+to start building OpenBLAS first and then explain what to do next while the OpenBLAS build
+is running. <strong>Alternatively, if you’d rather download a pre-built OpenBLAS, download the
+one of the</strong> <a class="reference external" href="https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com/">pre-built zip files</a> <strong>and skip to the Installing OpenBLAS section below.</strong></p>
+<p>Otherwise, install MSYS2 using <a class="reference external" href="https://github.com/msys2/msys2/wiki/MSYS2-installation">these instructions</a> including the <em class="xref py py-obj">pacman</em> update
+instructions. Occasionally during the updates the terminal might ask you to close the
+terminal but then might refuse to be closed and hang. If this happens you can kill it via
+Task Manager and continue with the instructions. Make sure to install the correct
+architecture for the SciPy that you want to build (eg. 32 or 64 bit). Now, you have three
+options for opening a terminal which are MSYS2, MINGW (32 or 64 bit). After updating all
+the packages, now we are ready to install some more package bundles that we will need.
+Open a MSYS2 terminal and type the following depending on the architecture of your
+choice; run the following for a 32-bit build</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pacman -S --needed base-devel mingw-w64-i686-toolchain mingw-w64-i686-cmake git
+</pre></div>
+</div>
+<p>and for 64-bit</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pacman -S --needed base-devel mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake git
+</pre></div>
+</div>
+<p>It will prompt to whether install everything in these packages and you can simply accept
+all via hitting enter key at each step.</p>
+<p>We should be aware of the fact that these tools also install Python2, very similar to
+a virtual environment, which is only usable within an MSYS2 terminal and we are <strong>not</strong>
+going to use it at any point. After updating, now we are going to use the build
+toolchain that we have installed in the previous step. Depending on 32/64bit choice,
+we will switch to another shell that MSYS2 created. In your start menu you should
+see three MSYS2 terminal shortcuts. Select the one with either 64 or 32bit indicator.
+The reason why we do this is that the toolchain and compilers are available to these
+shells and not to the standard MSYS2 terminal.</p>
+<p>If you already have a GitHub repository folder where you keep your own repos, it is better
+to use that location to keep things nice and tidy since we are going to clone yet another
+repository to obtain the source code, hence</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /c/&lt;wherever the GitHub repo folder is&gt;/GitHub
+</pre></div>
+</div>
+<p>You don’t necessarily need to build in that particular location, but it should be somewhere
+convenient. To make sure that we’re ready to build, type the following in the terminal:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make
+gfortran
+gcc
+</pre></div>
+</div>
+<p>These commands should give errors as we have not provided any arguments to them.
+However an error also implies that they are accessible on the path. Now clone
+the repository required to build OpenBLAS:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/matthew-brett/build-openblas.git
+<span class="nb">cd</span> build-openblas
+git submodule update --init --recursive
+</pre></div>
+</div>
+<p>If any of these commands fail, you’re not ready to build. Go back and make sure that MSYS2
+is installed correctly and has the required packages enabled. Now, let’s set some
+environment variables. In the MSYS2 terminal, type the following.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">OPENBLAS_COMMIT</span><span class="o">=</span>5f998ef
+<span class="nb">export</span> <span class="nv">OPENBLAS_ROOT</span><span class="o">=</span><span class="s2">&quot;C:\\opt&quot;</span>
+<span class="nb">export</span> <span class="nv">BUILD_BITS</span><span class="o">=</span><span class="m">64</span>
+</pre></div>
+</div>
+<p>Please check these variables’ purpose for a moment. More specifically, make sure that
+you have read/write access to the path that <code class="code docutils literal notranslate"><span class="pre">OPENBLAS_ROOT</span></code> points to. The output of the
+OpenBLAS build will  be collected in this folder. Make sure that the <code class="code docutils literal notranslate"><span class="pre">OPENBLAS_COMMIT</span></code>
+points to the correct OpenBLAS commit that you want to build in the cloned repo. In the
+future, <code class="code docutils literal notranslate"><span class="pre">build_openblas</span></code> repository might get updated and you might want to get those
+updates by changing the commit. Make sure that the architecture is correctly set to either
+32 or 64 bit. And after you’ve made sure of that, start the OpenBLAS build with:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./build_openblas.sh
+</pre></div>
+</div>
+<p>Building OpenBLAS is challenging. The build may fail with an error after a few
+hours but may also fail silently and produce an incorrect binary. Please, if you
+have any issues, <a class="reference external" href="https://github.com/scipy/scipy/issues/new">report them</a> so that we can save the next person’s time.</p>
+<p>While you’re waiting on OpenBLAS to finish building, go ahead and install <a class="reference external" href="https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017">build tools</a>
+from Microsoft, since these take a while to install and you’ll need them later.</p>
+<p>After the <code class="code docutils literal notranslate"><span class="pre">build_openblas.sh</span></code> script has completed (probably with an error), there
+should be an <code class="code docutils literal notranslate"><span class="pre">openblas.a</span></code> file somewhere on your system. If <code class="code docutils literal notranslate"><span class="pre">OPENBLAS_ROOT</span></code> was
+set to <code class="code docutils literal notranslate"><span class="pre">C:\\opt</span></code>, then you might see a line like this in the MSYS2 terminal:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Copying the static library to /c/opt/64/lib
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-openblas">
+<h3><a class="toc-backref" href="#id5">Installing OpenBLAS</a><a class="headerlink" href="#installing-openblas" title="Permalink to this headline">¶</a></h3>
+<p>If you see that line, then you might have OpenBLAS correctly built, even if other failures
+might have occurred. Look in that folder for <code class="code docutils literal notranslate"><span class="pre">openblas.a</span></code>. If you find a file called
+something like <code class="code docutils literal notranslate"><span class="pre">libopenblas_5f998ef_gcc7_2_0.a</span></code>, just rename it to <code class="code docutils literal notranslate"><span class="pre">openblas.a</span></code>
+and continue. If the file isn’t there, then poke around and try to find the file elsewhere
+in <code class="code docutils literal notranslate"><span class="pre">OPENBLAS_ROOT</span></code>. If you don’t have that file, you’ll probably need to find out what
+happened and then build OpenBLAS again. But if you have that file, we’ll assume that you’ve
+completed this step correctly. Proceeding on that assumption, let’s build SciPy.</p>
+<p><strong>Before continuing, make sure that you don’t have other copies of either</strong>
+<code class="code docutils literal notranslate"><span class="pre">openblas.lib</span></code> <strong>or</strong> <code class="code docutils literal notranslate"><span class="pre">libopenblas.lib</span></code> <strong>on your computer elsewhere.
+Multiple copies could result in later build errors that will be difficult to debug.
+You may verifiy that the openblas library was correctly picked up by looking for
+the following in your build log:</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>FOUND:
+   <span class="nv">libraries</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;openblas&#39;</span><span class="o">]</span>
+   <span class="nv">library_dirs</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;C:\opt\64\lib&#39;</span><span class="o">]</span>
+   <span class="nv">language</span> <span class="o">=</span> c
+   <span class="nv">define_macros</span> <span class="o">=</span> <span class="o">[(</span><span class="s1">&#39;HAVE_CBLAS&#39;</span>, None<span class="o">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-scipy">
+<h3><a class="toc-backref" href="#id6">Building SciPy</a><a class="headerlink" href="#building-scipy" title="Permalink to this headline">¶</a></h3>
+<p>Once you have built OpenBLAS, it’s time to build SciPy. Before continuing make sure to
+install the following software for building on the latest Python version. For building
+on other Python versions, see the <a class="reference external" href="https://wiki.python.org/moin/WindowsCompilers">WindowsCompilers</a> page.</p>
+<ol class="arabic simple">
+<li><p>Install Microsoft Visual Studio 2015 or 2017 Community Edition (use the <a class="reference external" href="https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017">build tools</a>
+from Microsoft)</p></li>
+<li><p>Finally, install Python from <a class="reference external" href="https://python.org/">https://python.org/</a> (make sure to check the box to install
+pip)</p></li>
+</ol>
+<p>After you’ve installed the required software, open an MSYS2 terminal, change to a good
+location to build, and clone SciPy.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> C:<span class="se">\U</span>sers<span class="se">\M</span>yUser<span class="se">\D</span>ownloads
+git clone https://github.com/scipy/scipy.git
+<span class="nb">cd</span> scipy
+</pre></div>
+</div>
+<p>Now we need to copy the <code class="code docutils literal notranslate"><span class="pre">openblas.a</span></code> file that we’ve built earlier to the correct
+location. If your Python is installed somewhere like the following:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\U</span>sers<span class="se">\&lt;</span>user name&gt;<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\P</span>rograms<span class="se">\P</span>ython<span class="se">\P</span>ython36<span class="se">\p</span>ython.exe
+</pre></div>
+</div>
+<p>Then you’ll need to put the <code class="code docutils literal notranslate"><span class="pre">openblas.a</span></code> file somewhere like the following:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\U</span>sers<span class="se">\&lt;</span>user name&gt;<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\P</span>rograms<span class="se">\P</span>ython<span class="se">\P</span>ython36<span class="se">\L</span>ib
+</pre></div>
+</div>
+<p>Adjust the location accordingly based on where <code class="code docutils literal notranslate"><span class="pre">python.exe</span></code> is located. Now for a
+sanity check. Type  the following and press enter.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gfortran
+</pre></div>
+</div>
+<p>If you see an error with the above command, <code class="code docutils literal notranslate"><span class="pre">gfortran</span></code> is not correctly installed.
+Go back to the “Building OpenBLAS” section and make sure that you have installed the correct
+tools.</p>
+<p>Now install the dependencies that we need to build and test SciPy. <strong>It’s important that you
+specify the full path to the native Python interpreter so that the built-in MSYS2 Python will
+not be used. Attempting to build with the MSYS2 Python will not work correctly.</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/c/Users/&lt;user name&gt;/AppData/Local/Programs/Python/Python36/python.exe <span class="se">\</span>
+     -m pip install numpy&gt;<span class="o">=</span><span class="m">1</span>.14.0 cython pytest pytest-xdist pytest-faulthandler
+</pre></div>
+</div>
+<p>Please note that this is a simpler procedure than what is used for the official binaries.
+<strong>Your binaries will only work with the latest NumPy (v1.14.0dev and higher)</strong>. For
+building against older NumPy versions, see <a class="reference internal" href="#building-against-an-older-numpy-version">Building Against an Older NumPy Version</a>.
+Make sure that you are in the same directory where  <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> is (you should be if you
+have not changed directories):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls setup.py
+</pre></div>
+</div>
+<p>Assuming that you have set up everything correctly, you should be ready to build. Run
+the following commands:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/c/Users/&lt;user name&gt;/AppData/Local/Programs/Python/Python36/python.exe <span class="se">\</span>
+     -m pip wheel -v -v -v .
+/c/Users/&lt;user name&gt;/AppData/Local/Programs/Python/Python36/python.exe <span class="se">\</span>
+     runtests.py --mode full
+</pre></div>
+</div>
+<p>Congratulatations, you’ve built SciPy!</p>
+</div>
+</div>
+<div class="section" id="building-against-an-older-numpy-version">
+<h2><a class="toc-backref" href="#id7">Building Against an Older NumPy Version</a><a class="headerlink" href="#building-against-an-older-numpy-version" title="Permalink to this headline">¶</a></h2>
+<p>If you want to build SciPy to work with an older numpy version, then you will need
+to replace the NumPy “distutils” folder with the folder from the latest numpy.
+The following powershell snippet can upgrade NumPy distutils while retaining an older
+NumPy <a class="reference external" href="https://en.wikipedia.org/wiki/Application_binary_interface">ABI</a>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">$NumpyDir</span> <span class="o">=</span> <span class="k">$((</span>python <span class="o">-</span>c <span class="s1">&#39;import os; import numpy; print(os.path.dirname(numpy.__file__))&#39;</span><span class="o">)</span> <span class="o">|</span> Out-String<span class="o">)</span>.Trim<span class="o">()</span>
+rm <span class="o">-</span>r <span class="o">-</span>Force <span class="s2">&quot;</span><span class="nv">$NumpyDir</span><span class="s2">\distutils&quot;</span>
+<span class="nv">$tmpdir</span> <span class="o">=</span> New-TemporaryFile <span class="o">|</span> <span class="o">%{</span> rm <span class="nv">$_</span><span class="p">;</span> mkdir <span class="nv">$_</span> <span class="o">}</span>
+git clone <span class="o">-</span>q <span class="o">--</span><span class="nv">depth</span><span class="o">=</span><span class="m">1</span> <span class="o">-</span>b master https://github.com/numpy/numpy.git <span class="nv">$tmpdir</span>
+mv <span class="nv">$tmpdir</span><span class="se">\n</span>umpy<span class="se">\d</span>istutils <span class="nv">$NumpyDir</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="additional-resources">
+<h2><a class="toc-backref" href="#id8">Additional Resources</a><a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
+<p>As discussed in the overview, this document is not meant to provide extremely detailed explanations on how to build
+NumPy and SciPy on Windows. This is largely because currently, there is no single superior way to do so
+and because the process for building these libraries on Windows is under development. It is likely that any
+information will go out of date relatively soon. If you wish to receive more assistance, please reach out to the NumPy
+and SciPy mailing lists, which can be found <a class="reference external" href="https://www.scipy.org/scipylib/mailing-lists.html">here</a>.  There are many
+developers out there, working on this issue right now, and they would certainly be happy to help you out!  Google is also
+a good resource, as there are many people out there who use NumPy and SciPy on Windows, so it would not be surprising if
+your question or problem has already been addressed.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2008-2019, The SciPy community.
+      </li>
+      <li>
+      Last updated on May 17, 2019.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.0.1.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>
