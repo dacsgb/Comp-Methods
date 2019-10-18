@@ -1,6 +1,3 @@
-This is a data file that will be used as part of Exam 2 Part 2 - Fall 2019
-
-Temp (F)  Pressure ( psi)   Reluctance (%)
 75           500               0.0020
 75           1000              0.0008
 175          450               0.0090
