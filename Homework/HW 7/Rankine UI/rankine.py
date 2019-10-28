@@ -55,7 +55,7 @@ def main():
     print(eff)
 
     rankine1.state3.print()
-    #rankine1.print_summary()
+    rankine1.print_summary()
 
 if __name__=="__main__":
     main()
