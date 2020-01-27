@@ -117,9 +117,10 @@ if __name__ == '__main__':
     ic_fun = np.array([0,0,0])
 
     # Available Names = Lorenz, Rossler, Aizawa, Thomas
-    #Lorenz = Chaos(ic_lorenz,name='Lorenz')
-    #Rossler = Chaos(ic_rossler,name='Rossler')
-    #Aizawa = Chaos(ic_aizawa,name='Aizawa')
-    #Thomas = Chaos(ic_thomas,name='Thomas')
+    Lorenz = Chaos(ic_lorenz,name='Lorenz')
+    Rossler = Chaos(ic_rossler,name='Rossler')
+    Aizawa = Chaos(ic_aizawa,name='Aizawa')
+    Thomas = Chaos(ic_thomas,name='Thomas')
     Fun = Chaos(ic_fun,name='Fun',t_final=1e5)
+    
     plt.show()
