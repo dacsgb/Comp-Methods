@@ -90,7 +90,6 @@ class Chaos():
         if self.name == 'Lorenz':
             self.Solution = odeint(self.lorenz,self.ic,self.t)
         if self.name == 'Rossler':
-
             self.Solution = odeint(self.rossler,self.ic,self.t)
         if self.name == 'Aizawa':
             self.Solution = odeint(self.aizawa,self.ic,self.t)
@@ -114,13 +113,12 @@ if __name__ == '__main__':
     ic_rossler = np.array([1,1,1])
     ic_lorenz = np.array([1,1,1])
     ic_thomas = np.array([0,0,1])
-    ic_fun = np.array([0,0,0])
+    ic_fun = np.array([-1.175,2.06,0.965])
 
     # Available Names = Lorenz, Rossler, Aizawa, Thomas
-    Lorenz = Chaos(ic_lorenz,name='Lorenz')
-    Rossler = Chaos(ic_rossler,name='Rossler')
-    Aizawa = Chaos(ic_aizawa,name='Aizawa')
-    Thomas = Chaos(ic_thomas,name='Thomas')
-    Fun = Chaos(ic_fun,name='Fun',t_final=1e5)
-    
+    #Lorenz = Chaos(ic_lorenz,name='Lorenz')
+    #Rossler = Chaos(ic_rossler,name='Rossler')
+    #Aizawa = Chaos(ic_aizawa,name='Aizawa')
+    #Thomas = Chaos(ic_thomas,name='Thomas')
+    Fun = Chaos(ic_fun,name='Fun',t_final=1e4)
     plt.show()

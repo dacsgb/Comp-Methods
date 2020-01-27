@@ -26,7 +26,7 @@ def CubicSpline(x,y,slope1=0,slope2=0):
         a[i][2] = 3*(y[i+1]-y[i])/(x[i+1]-x[i])**2 - (K[i+1]+2*K[i])/(x[i+1]-x[i])
         a[i][3] = 2*(y[i]-y[i+1])/(x[i+1]-x[i])**3 + (K[i+1]+K[i])/(x[i+1]-x[i])**2
         print()
-
+    print(a)
     return a
 
 def PlotCubicSpline(x, y, slope1 = 0, slope2 = 0, showpoints = True, npoints= 500):
