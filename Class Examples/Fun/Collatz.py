@@ -1,4 +1,5 @@
 import random
+import numpy as np 
 import matplotlib.pyplot as plt
 
 def Collatz(n):
@@ -12,6 +13,7 @@ def Collatz(n):
 
 def iterate():
     n = random.randint(10**10,10**11)
+    n= np.math.factorial(170)
     x = [n]
     while n != 1:
         n = Collatz(n)

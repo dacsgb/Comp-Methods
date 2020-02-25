@@ -33,8 +33,8 @@ class Chaos():
         return State_dot
     
     def rossler(self,State,t):
-        a = 0.2
-        b =0.2
+        a = .0005
+        b =0.6
         c = 5.7
 
         x,y,z = State
@@ -116,9 +116,9 @@ if __name__ == '__main__':
     ic_fun = np.array([-1.175,2.06,0.965])
 
     # Available Names = Lorenz, Rossler, Aizawa, Thomas
-    #Lorenz = Chaos(ic_lorenz,name='Lorenz')
+    Lorenz = Chaos(ic_lorenz,name='Lorenz')
     #Rossler = Chaos(ic_rossler,name='Rossler')
     #Aizawa = Chaos(ic_aizawa,name='Aizawa')
     #Thomas = Chaos(ic_thomas,name='Thomas')
-    Fun = Chaos(ic_fun,name='Fun',t_final=1e4)
+    #Fun = Chaos(ic_fun,name='Fun',t_final=1e4)
     plt.show()
