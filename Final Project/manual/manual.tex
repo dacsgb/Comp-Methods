@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{biblatex}
+\addbibresource{sources.bib}
+\usepackage[margin=1in]{geometry}
+
+\title{Efficiency Comparison of Path Planning Algorithms}
+\author{Diego Colón}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+    The motivation behind this project is to compare how distance optimal different path planning algorithms are in an unstructured environment with obstacles. These environments are randomly generated obstacles in a 100m square grid in which a kinematically feasable trajectory must be generated. The selected kinematics for this project are:
+
+    \begin{equation} \dot{x} = vcos(\theta) \end{equation}
+    \begin{equation} \dot{y} = vsin(\theta) \end{equation}
+    \begin{equation} \dot{\theta} = \omega \end{equation}    
+    
+\section{Requirements}
+    In order for this program to work the system it is ran on must have:
+    \begin{itemize}
+        \item Python 3.7 or Anaconda
+        \item Numpy
+        \item Scipy
+        \item Matplotlib
+        \item Sympy
+        \item PyQt5
+    \end{itemize}
+
+    If any of the modules are not installed, they can be installed through the command 'pip3 install [package name]'
+
+\section{Algorithm Explanation}
+    \subsection{Potential Field}
+        The Potential Field algorithm consists of creating a field that quantifies errors in position and penalizes proximity to obstacles. The algorithm then procedes to minimize this value by traveling in the direction of the gradient of the field. The field is characterized by:
+
+        \begin{equation}
+            F(x,y) = C_{obstacle}\ \left(x,y\right)\ =\ \left(x-x_{g}\right)^{2}+\left(y-y_{g}\right)^{2}\ +\ \sum_{n=1}^{N}e^{\frac{a}{\left(\left(x-x_{n}\right)^{2}+\left(y-y_{n}\right)^{2}\right)}}
+        \end{equation}
+        
+        Where  \begin{math} F(x,y )\end{math} is the field, \begin{math} (x_{g},y_{g}) \end{math} are the goal coordinates, and \begin{math} (x_{n},y_{n})\end{math} are the obstacle coordinates, and a is a scalar that allows for control of how close the vehicle gets to a given obstacle.
+
+        This method has several downsides, the biggest one being that the path could get stuck at a local minimum of the field and never find a path. The search could also produce paths that are unfeasable given the kinematic contraints, but this can be mitigated by finding the input to the system that provides the closest output to what was intended.
+
+    \subsection{Dynamic Window Approach}
+        The Dynamic Window Approach was first introduced by D. Fox, W. Burgard and S. Thrun in an IEEE article. The basis of this algorithm is to create a window of possible velocities achievable from the current state and minimize a function over a the control inputs, assuming they are constant for a small dt. The original algorithm minimized a function that acounted for the heading angle of the vehicle, the distance to obstacles and the current velocity. This was adapted for this project into the follow equation.
+
+        \begin{equation}
+            J\left(x,y,\theta\right)=C_{heading}+C_{distance}+C_{obstacle}+C_{velocity}
+        \end{equation}
+        
+        Where:
+        \begin{equation} C_{heading}\left(x,y,\theta\right)\ =\left(\theta-\ \arctan2\left(\left(x_{g}-x\right),\left(y_{g}-y\right)\right)\right)\end{equation}
+        \begin{equation} C_{distance}\left(x,y\right)\ =\ \left(x_{g}-x\right)^{2}\ +\ \left(y_{g}-y\right)^{2} \end{equation}
+        \begin{equation} C_{obstacle}\ \left(x,y\right)\ =\ \left(x-x_{g}\right)^{2}+\left(y-y_{g}\right)^{2}\ +\ \sum_{n=1}^{N}e^{\frac{a}{\left(\left(x-x_{n}\right)^{2}+\left(y-y_{n}\right)^{2}\right)}}\end{equation}
+        \begin{equation} C_{velocity}\left(v\right)\ =\left(v\ -\ v_{limit}\right)^{2} \end{equation}
+
+        By minimizing this cost function, the algorithm provides a path that is feasable to the vehicle and continuos in velocity. 
+
+\section{Usage}
+    The following instructions will guide you through performing the path planning comparisons for a given obstacle field assuming all required packages are installed.
+
+    \begin{enumerate}
+        \item Run Main.py
+        \item Select Obstacle field from Maze section
+        \item Click 'Load Map' Button
+        \item Input inital and final conditions
+        \item Click start button
+    \end{enumerate}
+
+    At this point the report will print out in a text field and a plot will appear showing the plotted trajectories. In the plot, the trajectories might appear to intersect with the obstcles but this is an artifact of the plotting software.
+
+\printbibliography
+
+\end{document}
